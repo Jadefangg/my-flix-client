@@ -42,7 +42,6 @@ export const MainView = () => {
   ]);
 
   const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
-
   if (selectedBook) {
     return (
       <BookView book={selectedBook} onBackClick={() => setSelectedBook(null)} />

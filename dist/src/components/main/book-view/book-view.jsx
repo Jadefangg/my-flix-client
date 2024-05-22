@@ -1,3 +1,4 @@
+export const BookView = ({ book, onBackClick }) => {
 export const BookView = ({ book }) => {
     return (
       <div>
@@ -12,6 +13,7 @@ export const BookView = ({ book }) => {
           <span>Author: </span>
           <span>{book.author}</span>
         </div>
+        <button onClick={onBackClick}>Back</button>
       </div>
     );
   };
