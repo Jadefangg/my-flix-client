@@ -1,7 +1,6 @@
-export const BookCard = ({ book, onBookClick }) => {
+export const MovieCard = ({ book, onBookClick }) => {
     return (
-      <div
-        onClick={() => {
+      <div onClick={() => {
           onBookClick(book);
         }}
       >
@@ -9,3 +8,5 @@ export const BookCard = ({ book, onBookClick }) => {
       </div>
     );
   };
+
+  

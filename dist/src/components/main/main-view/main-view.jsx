@@ -1,50 +1,37 @@
 import { useState } from "react";
-import { BookCard } from "../book-card/book-card";
-import { BookView } from "../book-view/book-view";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
   const [books, setBooks] = useState([
     {
       id: 1,
-      title: "Eloquent JavaScript",
+      title: "Inglorious Bastards",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
-      author: "Marijn Haverbeke"
+        "https://m.media-amazon.com/images/I/81KrCOVgp1L._AC_UY327_FMwebp_QL65_.jpg",
+      author: "Martin Scorsese"
     },
     {
       id: 2,
-      title: "Mastering JavaScript Functional Programming",
+      title: "The Dark Knight Rises",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51WAikRq37L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-      author: "Federico Kereki"
+        "https://m.media-amazon.com/images/I/81DqqPSKoeL._AC_UY327_FMwebp_QL65_.jpg",
+      author: "Christopher Nolan"
     },
     {
       id: 3,
-      title: "JavaScript: The Good Parts",
+      title: "The Good The Bad and The Ugly",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg",
-      author: "Douglas Crockford"
+        "https://m.media-amazon.com/images/I/91BDDsP0clL._AC_UY327_FMwebp_QL65_.jpg",
+      director: "Sergio Leone"
     },
-    {
-      id: 4,
-      title: "JavaScript: The Definitive Guide",
-      image:
-        "https://images-na.ssl-images-amazon.com/images/I/51HbNW6RzhL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-      author: "David Flanagan"
-    },
-    {
-      id: 5,
-      title: "The Road to React",
-      image:
-        "https://images-na.ssl-images-amazon.com/images/I/41MBLi5a4jL._SX384_BO1,204,203,200_.jpg",
-      author: "Robin Wieruch"
-    }
+   
   ]);
 
   const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
   if (selectedBook) {
     return (
-      <BookView book={selectedBook} onBackClick={() => setSelectedBook(null)} />
+      <MovieView book={selectedBook} onBackClick={() => setSelectedBook(null)} />
     );
   }
 
@@ -55,11 +42,11 @@ export const MainView = () => {
 return (
     <div>
       {books.map((book) => (
-        <BookCard
+        <MovieCard
           key={book.id}
           book={book}
-          onClick={() => {
-            setSelectedBook(book);
+          onBookClick={(newselectedbook) => {
+            setSelectedBook(newselectedbook);
           }}
         />
       ))}
