@@ -44,7 +44,9 @@ export const MainView = () => {
   const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
 
   if (selectedBook) {
-    return <BookView book={selectedBook} />;
+    return (
+      <BookView book={selectedBook} onBackClick={() => setSelectedBook(null)} />
+    );
   }
 
   if (books.length === 0) {
@@ -53,15 +55,14 @@ export const MainView = () => {
 //PROP  
 return (
     <div>
-      <button
-        onClick={() => {
-          alert("Nice!");
-        }}
-      >
-        Click me!
-      </button>
       {books.map((book) => (
-        <BookCard key={book.id} book={book} />
+        <BookCard
+          key={book.id}
+          book={book}
+          onClick={() => {
+            setSelectedBook(book);
+          }}
+        />
       ))}
     </div>
   );
