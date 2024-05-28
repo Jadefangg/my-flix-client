@@ -5,15 +5,14 @@ import { useState,useEffect } from "react"; //HOOKS
 
 export const MainView = () => {
   const [books, setBooks] = useState([]);
-  useEffect(() => {fetch("https://openlibrary.org/search.json?q=star+wars")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log("books from api:", data);
-  });
-
-}, []);
-
   const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
+  useEffect(() => {
+    fetch("https://openlibrary.org/search.json?q=star+wars")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("books from api:", data);
+      });
+  }, []);
   if (selectedBook) {
     return (
       <MovieView book={selectedBook} onBackClick={() => setSelectedBook(null)} />
