@@ -48,3 +48,8 @@ return (
     </div>
   );
 }
+const [user, setUser] = useState(null); //HOOKS for user login
+
+if (!user) {
+  return <LoginView />;
+}
