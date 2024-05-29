@@ -1,10 +1,11 @@
+//CODE FOR NEW BRANCH PULL REQUEST
 import { useEffect, useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { useState,useEffect } from "react"; //HOOKS
 
 export const MainView = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setMovies] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
   useEffect(() => {
     fetch("https://openlibrary.org/search.json?q=star+wars")
@@ -17,10 +18,10 @@ export const MainView = () => {
             image:
 `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
             author: doc.author_name?.[0]
-          };
+          };  
         });
 
-        setBooks(booksFromApi);
+        setMovies(booksFromApi);
       });
   }, []);
   if (selectedBook) {
