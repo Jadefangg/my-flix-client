@@ -1,4 +1,3 @@
-//CODE FOR NEW BRANCH PULL REQUEST
 import { useEffect, useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -49,7 +48,18 @@ return (
   );
 }
 const [user, setUser] = useState(null); //HOOKS for user login
+if (!user) {
+  return <LoginView onLoggedIn={(user) => setUser(user)} />;
+}
+const [token, setToken] = useState(null);
 
 if (!user) {
-  return <LoginView />;
+  return (
+    <LoginView
+      onLoggedIn={(user, token) => {
+        setUser(user);
+        setToken(token);
+      }}
+    />
+  );
 }
