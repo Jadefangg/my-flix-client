@@ -76,3 +76,4 @@ useEffect(() => {
       console.log(data);
     });
 }, [token]);
+<button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
