@@ -7,20 +7,29 @@ const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      access: username,
-      secret: password
-    };
-
-    fetch("https://openlibrary.org/account/login.json", {
+        Username: username,
+        Password: password
+      };
+  
+      fetch("YOUR_API_URL/login", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(data)
-      }).then((response) => {
-        if (response.ok) {
-          onLoggedIn(username);
-        } else {
-          alert("Login failed");
-        }
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Login response: ", data);
+          if (data.user) {
+            onLoggedIn(data.user, data.token);
+          } else {
+            alert("No such user");
+          }
+        })
+        .catch((e) => {
+          alert("Something went wrong");
+        });
   return ( //Tells the login api to validate username and password - callback!
     <form onSubmit={handleSubmit}>
       <label>
