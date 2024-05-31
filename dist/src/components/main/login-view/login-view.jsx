@@ -23,6 +23,9 @@ const handleSubmit = (event) => {
         console.log("Login response: ", data);
         if (data.user) {
           onLoggedIn(data.user, data.token);
+          // Store user data and token in localStorage
+          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('token', data.token);
         } else {
           alert("No such user");
         }
