@@ -4,6 +4,27 @@ import { MovieView } from "../movie-view/movie-view";
 import { useState,useEffect } from "react"; //HOOKS
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  const [user, setUser] = useState(storedUser? storedUser : null);
+  const [token, setToken] = useState(storedToken? storedToken : null);
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+
+ useEffect(() => {
+   if (!token) return;
+
+   fetch("..../movies", {
+     headers: { Authorization: `Bearer ${token}` },
+   })
+     .then((response) => response.json())
+     .then((movies) => {
+       setMovies(movies);
+
+     });
+ }, [token]);
+
   const [books, setMovies] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
   useEffect(() => {
@@ -76,4 +97,4 @@ useEffect(() => {
       console.log(data);
     });
 }, [token]);
-<button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
+<button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
