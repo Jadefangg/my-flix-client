@@ -54,10 +54,12 @@ export const MainView = () => {
           <SignupView />
         </>
       ) : selectedBook ? (
-        <BookView 
-          book={selectedBook} 
-          onBackClick={() => setSelectedBook(null)} 
+        <Col md={8}>
+        <BookView
+          book={selectedBook}
+          onBackClick={() => setSelectedBook(null)}
         />
+      </Col>
       ) : books.length === 0 ? (
         <div>The list is empty!</div>
       ) : (
