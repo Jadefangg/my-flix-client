@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap"; //Bootstrap components.
+import "./movie-card.scss"; //Styling for the movie card.
+
 export const MovieCard = ({ book, onBookClick }) => {
     return (//Card component from Bootstrap.
-      <Card>
+
+      <Card className="h-100">
       <Card.Img variant="top" src={book.image} />
       <Card.Body>
         <Card.Title>{book.title}</Card.Title>
