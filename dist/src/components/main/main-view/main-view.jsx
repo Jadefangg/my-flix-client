@@ -36,65 +36,43 @@ export const MainView = () => {
             id: doc.key,
             title: doc.title,
             image:
-`https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
+`https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`, //Image URL
             author: doc.author_name?.[0]
           };  
         });
 
         setMovies(booksFromApi);
       });
-  }, []);
-  if (selectedBook) {
-    return (
-      <MovieView book={selectedBook} onBackClick={() => setSelectedBook(null)} />
-    );
-  }
-
-  if (books.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-//PROP  
-return (
-    <div>
-      {books.map((book) => (
-        <MovieCard
-          key={book.id}
-          book={book}
-          onBookClick={(newselectedbook) => {
-            setSelectedBook(newselectedbook);
-          }}
-        />
-      ))}
-    </div>
-  );
-}//END OF MAINVIEW CONST!
-const [user, setUser] = useState(null); //HOOKS for user login
-if (!user) {
-  return <LoginView onLoggedIn={(user) => setUser(user)} />;
-}
-const [token, setToken] = useState(null);
-
-if (!user) {
+  }, []); //Empty array to prevent infinite loop.
+  //New code from here for <Row> and <Col> components. If statements removed.
   return (
-    <LoginView
-      onLoggedIn={(user, token) => {
-        setUser(user);
-        setToken(token);
-      }}
-    />
-  );
-}
-useEffect(() => {
-  if (!token) {
-    return;
-  }
-
-  fetch("https://myflixmoviedb.herokuapp.com/movies", {
-    headers: { Authorization: `Bearer ${token}` }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
-}, [token]);
-<button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
+    <Row> 
+      {!user ? (
+        <>
+          <LoginView onLoggedIn={(user) => setUser(user)} />
+          or
+          <SignupView />
+        </>
+      ) : selectedBook ? (
+        <BookView 
+          book={selectedBook} 
+          onBackClick={() => setSelectedBook(null)} 
+        />
+      ) : books.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {books.map((book) => (
+            <BookCard
+              key={book.id}
+              book={book}
+              onBookClick={(newSelectedBook) => {
+                setSelectedBook(newSelectedBook);
+              }}
+            />
+          ))}
+        </>
+      )}
+    </Row>
+);
+};
