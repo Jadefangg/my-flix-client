@@ -65,13 +65,15 @@ export const MainView = () => {
       ) : (
         <>
           {books.map((book) => (
+            <Col key={book.id} md={3}>
             <BookCard
-              key={book.id}
+             // key={book.id}
               book={book}
               onBookClick={(newSelectedBook) => {
                 setSelectedBook(newSelectedBook);
               }}
             />
+            </Col>
           ))}
         </>
       )}
