@@ -48,13 +48,13 @@ export const MainView = () => {
   return (
     <Row> 
       {!user ? (
-        <>
+          <Col md={5}>
           <LoginView onLoggedIn={(user) => setUser(user)} />
           or
           <SignupView />
-        </>
-      ) : selectedBook ? (
-        <Col md={8}>
+        </Col>
+      ) : selectedBook ? (//md is the breakpoint for medium devices.
+        <Col md={8} style={{ border: "1px solid black" }}> 
         <BookView
           book={selectedBook}
           onBackClick={() => setSelectedBook(null)}
