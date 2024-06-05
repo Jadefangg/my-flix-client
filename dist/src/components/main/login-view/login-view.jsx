@@ -1,6 +1,9 @@
 import React from "react";
+import { Button } from "react-bootstrap/lib/InputGroup"; //Bootstrap components.
+import { Form } from "react-bootstrap/lib/Navbar"; //Bootstrap components.
 
 export const LoginView = ({ onLoggedIn }) => {
+  
 const [username, setUsername] = useState("");
 const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
@@ -34,26 +37,30 @@ const handleSubmit = (event) => {
         alert("Something went wrong");
       });
   return ( //Tells the login api to validate username and password - callback!
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)} // this updates the state of the username variable
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} // this updates the state of the username variable
-        />
-      </label>
-      <button type="submit">
-        Submit
-      </button>
-    </form>
-  );
+  <Form onSubmit={handleSubmit}>
+  <Form.Group controlId="formUsername">
+    <Form.Label>Username:</Form.Label>
+    <Form.Control
+      type="text"
+      value={username}
+      onChange={(e) => setUsername(e.target.value)}
+      required
+      minLength="3" 
+    />
+  </Form.Group>
+
+  <Form.Group controlId="formPassword">
+    <Form.Label>Password:</Form.Label>
+    <Form.Control
+      type="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
+  </Form.Group>
+  <Button variant="primary" type="submit">
+    Submit
+  </Button>
+</Form>
+);
 }};

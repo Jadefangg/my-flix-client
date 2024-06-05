@@ -1,14 +1,19 @@
 import PropTypes from "prop-types";
+import { Button, Card } from "react-bootstrap"; //Bootstrap components.
 export const MovieCard = ({ book, onBookClick }) => {
-    return (
-      <div onClick={() => {
-          onBookClick(book);
-        }}
-      >
-        {book.title}
-      </div>
-    );
-  };
+    return (//Card component from Bootstrap.
+      <Card>
+      <Card.Img variant="top" src={book.image} />
+      <Card.Body>
+        <Card.Title>{book.title}</Card.Title>
+        <Card.Text>{book.author}</Card.Text>
+        <Button onClick={() => onBookClick(book)} variant="link">
+          Open
+        </Button>
+      </Card.Body>
+    </Card>
+  );
+};
   MovieCard.propTypes = {
     book: PropTypes.shape({
       title: PropTypes.string.isRequired,

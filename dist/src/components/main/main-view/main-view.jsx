@@ -67,7 +67,7 @@ return (
       ))}
     </div>
   );
-}
+}//END OF MAINVIEW CONST!
 const [user, setUser] = useState(null); //HOOKS for user login
 if (!user) {
   return <LoginView onLoggedIn={(user) => setUser(user)} />;
