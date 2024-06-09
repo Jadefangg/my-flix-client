@@ -15,7 +15,7 @@ export const MainView = () => {
  useEffect(() => {
    if (!token) return;
 
-   fetch("..../movies", {
+   fetch("..../movies", { //API endpoint for movies.
      headers: { Authorization: `Bearer ${token}` },
    })
      .then((response) => response.json())

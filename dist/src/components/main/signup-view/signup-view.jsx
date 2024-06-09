@@ -12,15 +12,15 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const data = {
+    const data = { //the const data will be used to send a request to the server for authentication.
       Username: username,
       Password: password
     };
 
-    fetch("YOUR_API_URL/login", {
-      method: "POST",
+    fetch("YOUR_API_URL/login", { //login endpoint 
+      method: "POST", //sets endpoint method to POST.
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json"// postman -> body -> raw -> JSON!
       },
       body: JSON.stringify(data)
     })
