@@ -45,37 +45,58 @@ export const MainView = () => {//removed props
       )}
       </>}
       /> 
-    </Routes>
+      <Route
+      path="/login"
+      element={
+      <>
       {!user ? (
+        <Navigate to="/" />
+      ) : (
           <Col md={5}>
           <LoginView onLoggedIn={(user) => setUser(user)} />
-          or
-          <SignupView />
         </Col>
-      ) : selectedBook ? (//md is the breakpoint for medium devices.
-        <Col md={8} style={{ border: "1px solid black" }}> 
-        <BookView
-          book={selectedBook}
-          onBackClick={() => setSelectedBook(null)}
-        />
-      </Col>
-      ) : books.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {books.map((book) => (
-            <Col key={book.id} md={3}>
-            <BookCard
-             // key={book.id}
-              book={book}
-              onBookClick={(newSelectedBook) => {
-                setSelectedBook(newSelectedBook);
-              }}
-            />
-            </Col>
-          ))}
-        </>
       )}
-    </Row>
-);
+      </>
+      }
+      />
+      <Route path="/movies/:movieId" 
+      element={
+        <>
+        {
+          user? (
+            <Navigate to="login" replace />
+          ) : movies.length === 0 ? (
+            <Col> The list is empty!</Col>
+          ) : (
+            <Col md={8}>
+            <MovieView movies={movies} />
+            </Col>
+          )}
+        </>
+      }
+      />
+      <Route
+      path="/"
+      element={
+        <>
+          {!user ? (
+            <Navigate to="/login" replace />
+          ) : books.length === 0 ? (
+            <Col>The list is empty!</Col>
+          ) : (
+            <>
+              {books.map((book) => (
+                <Col className="mb-4" key={book.id} md={3}>
+                  <BookCard book={book} />
+                </Col>
+              ))}
+            </>
+          )}
+        </>
+      }
+    />      
+        </Routes>
+      </Row>
+    </BrowserRouter>
+  );
 };
