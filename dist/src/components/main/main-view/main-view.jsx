@@ -3,30 +3,14 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { useState,useEffect } from "react"; //HOOKS
 
-export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
+import { Row, Col } from "react-bootstrap"; //Bootstrap components for grid layout.
+import {BrowserRouter, Routes,Route, Navigate } from "react-router-dom"; //React Router components.
+
+export const MainView = () => {//removed props
   const [user, setUser] = useState(storedUser? storedUser : null);
-  const [token, setToken] = useState(storedToken? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
 
 
- useEffect(() => {
-   if (!token) return;
-
-   fetch("..../movies", { //API endpoint for movies.
-     headers: { Authorization: `Bearer ${token}` },
-   })
-     .then((response) => response.json())
-     .then((movies) => {
-       setMovies(movies);
-
-     });
- }, [token]);
-
-  const [books, setMovies] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
   useEffect(() => {
     fetch("https://openlibrary.org/search.json?q=star+wars")
       .then((response) => response.json())
@@ -45,8 +29,23 @@ export const MainView = () => {
       });
   }, []); //Empty array to prevent infinite loop.
   //New code from here for <Row> and <Col> components. If statements removed.
-  return (
-    <Row> 
+  //FIRST ROUTE BELOW
+  return (<BrowserRouter>  
+    <Row className="justify-content"> 
+    <Routes >
+      <Route
+      path="/signup"
+      element={<>
+      {user? (
+        <Navigate to="/" />
+      ) : (
+        <Col md={5}>
+          <SignupView />
+        </Col>
+      )}
+      </>}
+      /> 
+    </Routes>
       {!user ? (
           <Col md={5}>
           <LoginView onLoggedIn={(user) => setUser(user)} />
