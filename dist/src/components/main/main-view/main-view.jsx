@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { useState,useEffect } from "react"; //HOOKS
-
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 import { Row, Col } from "react-bootstrap"; //Bootstrap components for grid layout.
 import {BrowserRouter, Routes,Route, Navigate } from "react-router-dom"; //React Router components.
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {//removed props
   const [user, setUser] = useState(storedUser? storedUser : null);
@@ -31,6 +33,7 @@ export const MainView = () => {//removed props
   //New code from here for <Row> and <Col> components. If statements removed.
   //FIRST ROUTE BELOW
   return (<BrowserRouter>  
+  <NavigationBar user={user} onLoggedOut={() => setUser(null)} /> 
     <Row className="justify-content"> 
     <Routes >
       <Route
