@@ -15,7 +15,7 @@ export const MainView = () => {//removed props
     fetch("https://openlibrary.org/search.json?q=star+wars")
       .then((response) => response.json())
       .then((data) => {
-        const booksFromApi = data.docs.map((doc) => {
+        const moviesFromApi = data.docs.map((doc) => {
           return {
             id: doc.key,
             title: doc.title,
@@ -25,7 +25,7 @@ export const MainView = () => {//removed props
           };  
         });
 
-        setMovies(booksFromApi);
+        setMovies(moviesFromApi);
       });
   }, []); //Empty array to prevent infinite loop.
   //New code from here for <Row> and <Col> components. If statements removed.
@@ -81,13 +81,13 @@ export const MainView = () => {//removed props
         <>
           {!user ? (
             <Navigate to="/login" replace />
-          ) : books.length === 0 ? (
+          ) : movies.length === 0 ? (
             <Col>The list is empty!</Col>
           ) : (
             <>
-              {books.map((book) => (
-                <Col className="mb-4" key={book.id} md={3}>
-                  <BookCard book={book} />
+              {movie.map((movie) => (
+                <Col className="mb-4" key={movie.id} md={3}>
+                  <MovieCard movie={movie} />
                 </Col>
               ))}
             </>
