@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { UserInfo } from "./user-info";
 import { Link } from "react-router-dom";
 import { UserUpdate } from "./user-update";
@@ -16,7 +15,7 @@ export const ProfileView = ({ movies, user }) => {
 
   return (
     <div className="profile-view-container">
-      <div className="user-info">
+      <div className="info">
         <UserInfo
           name={user.Username}
           email={user.Email}
