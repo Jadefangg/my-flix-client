@@ -30,9 +30,19 @@ export const MainView = () => {//removed props
         setMovies(moviesFromApi);
       });
   }, []); //Empty array to prevent infinite loop.
+  const [favorites, setFavorites] = useState([]);
+
+const handleAddToFavorites = (movieId, isFavorite) => {
+  if (isFavorite) {
+    setFavorites(favorites.filter(id => id !== movieId));
+  } else {
+    setFavorites([...favorites, movieId]);
+  }
+} //Function to add movie to favorites.
   //New code from here for <Row> and <Col> components. If statements removed.
   //FIRST ROUTE BELOW
-  return (<BrowserRouter>  
+  return (
+  <BrowserRouter>  
   <NavigationBar user={user} onLoggedOut={() => setUser(null)} /> 
     <Row className="justify-content"> 
     <Routes >
@@ -88,9 +98,10 @@ export const MainView = () => {//removed props
             <Col>The list is empty!</Col>
           ) : (
             <>
-              {movie.map((movie) => (
+              {movies.map((movie) => (
                 <Col className="mb-4" key={movie.id} md={3}>
-                  <MovieCard movie={movie} />
+                  <MovieCard movie={movie} 
+                  AddToFavoritesClick={handleAddToFavorites}/>
                 </Col>
               ))}
             </>
