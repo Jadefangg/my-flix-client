@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"; //React Router component.
 import "./movie-card.scss"; //Styling for the movie card.
 
 export const MovieCard = ({ movie, AddToFavoritesClick }) => {
-  const handleAddToFavorites =() =>{ //Function to add movie to favorites.
+  const handleClickToFavorites =() =>{ //Function to add movie to favorites.
     AddToFavoritesClick(movie._id);
   }
     return (//Card component from Bootstrap.
@@ -17,7 +17,7 @@ export const MovieCard = ({ movie, AddToFavoritesClick }) => {
         <Link to = {`/movies/${encodeURIComponent(movie._id)}`}> 
         <Button variant="link">Open</Button>
         </Link>
-        <Button variant="link" onClick={handleAddToFavorites}>Add to your favs!</Button>
+        <Button variant="link" onClick={handleClickToFavorites}>Add to your favs!</Button>
         </Card.Body>
     </Card>
   );

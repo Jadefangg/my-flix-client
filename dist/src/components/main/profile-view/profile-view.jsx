@@ -1,59 +1,124 @@
-import { MovieCard } from './movie-card';
 import React, { useState, useEffect } from "react";
-import { UserInfo } from "./user-info";
-import { Link } from "react-router-dom";
-//import { UserUpdate } from "./user-update";
-//import { UserDelete } from "./user-delete";
-//import { FavoriteMovies } from "./favorite-movie";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./profile-view.scss";
+import PropTypes from "prop-types";
+import { Button, Form, Row, Col, Alert, Modal } from "react-bootstrap";
 
-export const ProfileView = ({ movie, user }) => {//Displaying user info via /users endpoint.
-    const [userInfo, setUserInfo] = useState(null);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+export const ProfileView = ({ user, onLoggedOut, onUserUpdate, onUserDelete, token }) => {
+    const [username, setUsername] = useState(user.Username);
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState(user.Email);
+    const [birthday, setBirthday] = useState("");
+    const [updateMessage, setUpdateMessage] = useState("");
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     useEffect(() => {
-        fetch(`https://your-api-url/users/${user.id}`)
-          .then(response => response.json())
-          .then(data => setUserInfo(data))
-          .catch(error => console.error('Error:', error));
-      }, [user.id]);
-    
-      const handleUpdate = () => {
-        fetch(`https://your-api-url/users/${user.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-            email: email,
-          }),
-        })
-        .then(response => response.json())
-        .then(data => setUserInfo(data))
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-      };
-    if (!userInfo) {
-      return <div>User not found</div>;
-    }
-    else
-    return (
-      <div>
-        <UserInfo user={userInfo} />
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="New username" />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="New password" />
-      <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="New email" />
-      <button onClick={handleUpdate}>Update</button>
-        {/* ...other components... */}
-      <MovieCard movie={movie} /> 
-      </div>
-      
-    );
-  };
+        if (user.Birthday) {
+            setBirthday(new Date(user.Birthday).toISOString().split('T')[0]);
+        }
+    }, [user.Birthday]);
 
-  
+    const handleUpdate = async () => {
+        const updatedUser = {
+            Username: username,
+            Email: email,
+            Birthday: birthday,
+            FavoriteMovies: user.FavoriteMovies || []
+        };
+        if (password) {
+            updatedUser.Password = password;
+        }
+
+        const success = await onUserUpdate(updatedUser);
+        if (success) {
+            setUpdateMessage('User updated successfully!');
+            setTimeout(() => setUpdateMessage(''), 3000);
+        }
+    };
+
+    const handleDelete = async () => {
+        const success = await onUserDelete(user.Username);
+        if (success) {
+            onLoggedOut();
+        }
+    };
+
+    return (
+        <Row>
+            <Col md={6}>
+                <h2 className="profile-title">User Profile</h2>
+                <hr className="profile-divider" />
+                {updateMessage && <Alert variant="success">{updateMessage}</Alert>}
+                <Form>
+                    <Form.Group controlId="formUsername">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formBirthday">
+                        <Form.Label>Birthday</Form.Label>
+                        <Form.Control
+                            type="date"
+                            value={birthday}
+                            onChange={(e) => setBirthday(e.target.value)}
+                        />
+                    </Form.Group>
+                    <br></br>
+                    <Button variant="primary" onClick={handleUpdate} className="me-2">
+                        Update
+                    </Button>
+                    <Button variant="outline-danger" onClick={() => setShowDeleteModal(true)}>
+                        Delete Account
+                    </Button>
+                </Form>
+
+                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} className="custom-modal">
+                    <Modal.Header closeButton>
+                        <Modal.Title>Deleting Confirmation</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                       Would you like to delete account?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="light" onClick={() => setShowDeleteModal(false)}>
+                            Close
+                        </Button>
+                        <Button variant="outline-danger" onClick={handleDelete}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </Col>
+        </Row>
+    );
+};
+
+ProfileView.propTypes = {
+    user: PropTypes.shape({
+        Username: PropTypes.string.isRequired,
+        Email: PropTypes.string.isRequired,
+        Birthday: PropTypes.string,
+        FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired
+    }).isRequired,
+    onLoggedOut: PropTypes.func.isRequired,
+    onUserUpdate: PropTypes.func.isRequired,
+    onUserDelete: PropTypes.func.isRequired,
+    token: PropTypes.string.isRequired,
+};
