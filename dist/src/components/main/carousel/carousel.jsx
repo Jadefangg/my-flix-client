@@ -8,12 +8,12 @@ export const MovieCarousel = ({ movies }) => {
       {movies.map((movie) => (
         <Carousel.Item key={movie._id}>
           <img
-            className="d-block w-100"
+            className="d-block w-100" //d-block is a utility class that makes the image a block element!
             src={movie.ImagePath}
             alt={movie.Title}
           />
           <Carousel.Caption>
-            <h3>{movie.Title}</h3>
+            <h3 id="movie-title-carousel">{movie.Title}</h3>
           </Carousel.Caption>
         </Carousel.Item>
       ))}
