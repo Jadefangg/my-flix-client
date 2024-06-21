@@ -1,0 +1,14 @@
+.movie-card {
+    background-color: #008000; // green background color
+    border-radius: 5px; // rounded borders
+    transition: all .25s ease-in-out;
+  
+    &:hover {
+      background-color: #00c000; // lighter green on hover
+      border-radius: 15px; // increase border radius on hover
+    }
+  
+    .card-body {
+      color: #ffffff; // white text to contrast with the green background
+    }
+  }
