@@ -11,9 +11,9 @@ export const MovieCarousel = ({ movies }) => {
             className="d-block w-100" //d-block is a utility class that makes the image a block element!
             src={movie.ImagePath}
             alt={movie.Title}
-          />
+          /> 
           <Carousel.Caption>
-            <h3 id="movie-title-carousel">{movie.Title}</h3>
+            <h3 id="movie-title-carousel">{movie.Title}</h3> //scss added for styling
           </Carousel.Caption>
         </Carousel.Item>
       ))}
