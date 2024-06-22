@@ -1,16 +1,41 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { useState,useEffect } from "react"; //HOOKS
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
+import { MovieCarousel } from "../carousel/carousel";
+import { ProfileView } from "../profile-view/profile-view";
+import { FavoritesView } from "../favorites-view/favorites-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Navbar, Nav, Button, Container, Form } from "react-bootstrap";
 
-import { Row, Col } from "react-bootstrap"; //Bootstrap components for grid layout.
-import {BrowserRouter, Routes,Route, Navigate } from "react-router-dom"; //React Router components.
-
-export const MainView = () => {//removed props
+export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser? storedUser : null);
+  const [token, setToken] = useState(storedToken? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
 
+ useEffect(() => {
+   if (!token) return;
+
+   fetch("..../movies", { //API endpoint for movies.
+     headers: { Authorization: `Bearer ${token}` },
+   })
+     .then((response) => response.json())
+     .then((movies) => {
+       setMovies(movies);
+
+     });
+ }, [token]);
+
+  const [books, setMovies] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null); //Flag to show the selected book.
   useEffect(() => {
     fetch("https://openlibrary.org/search.json?q=star+wars")
       .then((response) => response.json())
@@ -29,22 +54,8 @@ export const MainView = () => {//removed props
       });
   }, []); //Empty array to prevent infinite loop.
   //New code from here for <Row> and <Col> components. If statements removed.
-  return (<BrowserRouter>
-    <Row className="justify-content"> 
-    <Routes >
-      <Route
-      path="/signup"
-      element={<>
-      {user? (
-        <Navigate to="/" />
-      ) : (
-        <Col md={5}>
-          <SignupView />
-        </Col>
-      )}
-      </>}
-      />
-    </Routes>
+  return (
+    <Row> 
       {!user ? (
           <Col md={5}>
           <LoginView onLoggedIn={(user) => setUser(user)} />
