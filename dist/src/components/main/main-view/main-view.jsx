@@ -1,3 +1,4 @@
+//COMPONENT NAMES ALWAYS BEGIN WITH CAPITAL LETTERS IN REACT(JSX) FILES.
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
