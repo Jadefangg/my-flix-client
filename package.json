@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Achievement 3",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-     "build": "parcel build src/index.html --public-url /"
-
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
