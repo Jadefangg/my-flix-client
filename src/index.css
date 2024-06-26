@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
 :root {
   --color-sky-light: salmon;
   --color-sky-dark: #F8B9AE;
@@ -7,7 +9,7 @@
   --color-flame-yellow: darkgreen;
   --color-flame-orange: #FDA263;
 }
-@import '~bootstrap/scss/bootstrap.scss';
+
 
 .card-img-top {
   height: 22rem;
