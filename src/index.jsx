@@ -3,7 +3,7 @@ import { MainView } from './components/main-view/main-view';
 import Container from 'react-bootstrap/Container';
 
 // Import statement to indicate to bundle ./index.scss
-import "./index.scss";
+import "./index.css";
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {

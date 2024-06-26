@@ -23,8 +23,8 @@ export const MainView = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.Title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredMovies = movies.filter((movie) => // filteredMovies is an array of movies that match the search term
+    movie.Title.toLowerCase().includes(searchTerm.toLowerCase()) ||//movie.Title - title was declared as a prop in MovieCard
     movie.Description.toLowerCase().includes(searchTerm.toLowerCase()) ||
     movie.Genre.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     movie.Genre.Description.toLowerCase().includes(searchTerm.toLowerCase()) ||
