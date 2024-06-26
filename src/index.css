@@ -1,5 +1,4 @@
-@import '~bootstrap/scss/bootstrap.scss';
-
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
 :root {
   --color-sky-light: salmon;
   --color-sky-dark: #F8B9AE;
