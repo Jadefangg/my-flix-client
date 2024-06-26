@@ -4,9 +4,9 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //this is the fontawesome icon library which enables us to import the following.
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'; // import solidHeart icon
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'; // import regularHeart icon
 
 export const MovieCard = ({ movieData, user, onFavouritesUpdate }) => {
   // State to track whether the movie is in favorites
@@ -52,7 +52,7 @@ export const MovieCard = ({ movieData, user, onFavouritesUpdate }) => {
   return (
     <Card className="h-100 bg-secondary bg-gradient text-light shadow" border="dark">
       <Button variant="link" onClick={toggleFavorite} className="ms-2" style={{ position: "absolute", top: "10px", right: "10px", zIndex: 1 }}>
-        <FontAwesomeIcon icon={isFavorite ? solidHeart : regularHeart} size="lg" color={isFavorite ? "primary" : "primary"} />
+        <FontAwesomeIcon icon={isFavorite ? solidHeart : regularHeart} size="lg" color={isFavorite ? "salmon" : "cyan"} /> 
       </Button>
       <Card.Img variant="top" src={movieData.ImagePath} />
       <Card.Body>
