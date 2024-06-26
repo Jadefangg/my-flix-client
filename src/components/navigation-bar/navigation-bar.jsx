@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import logo from "../img/brand/myFlix-icon.svg";
+//import logo from "../img/brand/myFlix-icon.svg";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
