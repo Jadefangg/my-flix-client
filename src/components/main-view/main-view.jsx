@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import './main-view.css';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -36,7 +37,7 @@ export const MainView = () => {
       return;
     }
 
-    fetch("https://movies-myflix-api-84dbf8740f2d.herokuapp.com/movies", {
+    fetch("https://frozen-bastion-60513-44d63176384c.herokuapp.com/movies", { //my heroku app <<<<<<
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
@@ -75,7 +76,7 @@ export const MainView = () => {
             element={
               <>
                 {user ? (
-                  <Navigate to="/" />
+                  <Navigate to="/" /> //if user is logged in, redirect to home page
                 ) : (
                   <Col md={5} className="m-5 text-light">
                     <h1 className="text-center mb-5"><span className="h6 fst-italic">Welcome to<br /></span> myFlix</h1>
@@ -93,7 +94,7 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5} className="m-5 text-light">
-                    <h1 className="text-center mb-5"><span className="h6 fst-italic">Welcome to<br /></span> myFlix</h1>
+                    <h1 className="welcomHeading"><span className="welcomeHeading2">Welcome to<br /></span> myFlix</h1>
                     <h2>Login</h2>
                     <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                   </Col>
@@ -116,7 +117,7 @@ export const MainView = () => {
               </>
             } />
           <Route
-            path="/"
+            path="/" //this is the default route for the home page which will load all movies.
             element={
               <>{!user ? (
                 <Navigate to="/login" replace />

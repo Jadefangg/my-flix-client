@@ -43,7 +43,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${id}`, {
+    fetch(`https://frozen-bastion-60513-44d63176384c.herokuapp.com/users/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
   };
 
   const handleDeleteAccount = () => {
-    fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${id}`, {
+    fetch(`https://frozen-bastion-60513-44d63176384c.herokuapp.com/users/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

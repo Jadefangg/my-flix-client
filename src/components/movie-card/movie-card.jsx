@@ -19,7 +19,7 @@ export const MovieCard = ({ movieData, user, onFavouritesUpdate }) => {
 
     const methodType = isFavorite ? "DELETE" : "POST";
 
-    fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}/${movieData._id}`, {
+    fetch(`https://frozen-bastion-60513-44d63176384c.herokuapp.com/users/${user._id}/${movieData._id}`, { //change to my heroku app <<<<<<
       method: methodType,
       headers: {
         "Content-Type": "application/json",
