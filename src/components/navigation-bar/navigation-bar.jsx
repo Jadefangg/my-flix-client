@@ -5,27 +5,21 @@ import PropTypes from 'prop-types';
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar bg="primary" data-bs-theme="dark" expand="lg" fixed="top">
+    <Navbar expand="lg" fixed="top" style={{backgroundColor:'darkgreen'}}>
       <Container>
-        <Navbar.Brand as={Link} to="/">
-          <img
-            alt=""
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block"
-          />{' '}
-          myFlix
+        <Navbar.Brand as={Link} to="/" style={{fontFamily:'monospace',}}>
+         {' '}
+          Superflix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           {!user && (
             <>
-              <Nav className="me-auto">
-                <Nav.Link as={Link} to="/login">
+              <Nav >
+                <Nav.Link as={Link} to="/login" style={{fontFamily:'monospace'}}>
                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
+                <Nav.Link as={Link} to="/signup" style={{fontFamily:'monospace'}}>
                   Signup
                 </Nav.Link>
               </Nav>
@@ -33,7 +27,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           )}
           {user && (
             <>
-              <Nav className="me-auto">
+              <Nav style={{color:'red'}}>
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>

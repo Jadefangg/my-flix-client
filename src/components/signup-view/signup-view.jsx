@@ -39,29 +39,29 @@ export const SignupView = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-2" controlId="signupFormUsername">
+    <Form style={{margin:'60px'}} onSubmit={handleSubmit}>
+      <Form.Group style={{color:'red'}} controlId="signupFormUsername">
         <Form.Label>
           Username:
         </Form.Label>
-        <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} minLength="8" required />
+        <Form.Control  type="text" value={username} onChange={(e) => setUsername(e.target.value)} minLength="8" required />
       </Form.Group>
 
-      <Form.Group className="mb-2" controlId="signupFormPassword">
+      <Form.Group style={{color:'red'}} className="mb-2" controlId="signupFormPassword">
         <Form.Label>
           Password:
         </Form.Label>
         <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} minLength="10" required />
       </Form.Group>
 
-      <Form.Group className="mb-2" controlId="signupFormEmail">
+      <Form.Group style={{color:'red'}} className="mb-2" controlId="signupFormEmail">
         <Form.Label>
           Email:
         </Form.Label>
         <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       </Form.Group>
 
-      <Form.Group className="mb-2" controlId="signupFormBirthday">
+      <Form.Group style={{color:'red'}} className="mb-2" controlId="signupFormBirthday">
         <Form.Label>
           Birthday:
         </Form.Label>

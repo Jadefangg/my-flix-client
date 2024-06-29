@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import './main-view.css';
 
+console.log("main-view loaded"); //this is to check if the file is loaded in the console
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -51,13 +52,13 @@ export const MainView = () => {
             Featured: movie.Featured,
             Genre: {
               Name: movie.Genre.Name,
-              Description: movie.Genre.Description
+             // Description: movie.Genre.Description
             },
             Director: {
               Name: movie.Director.Name,
               Bio: movie.Director.Bio,
-              Birth: movie.Director.Birth,
-              Death: movie.Director.Death
+              //Birth: movie.Director.Birth,
+              //Death: movie.Director.Death
             }
           };
         });
@@ -68,8 +69,8 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
-      <Row className="justify-content-center pt-5">
+      <NavigationBar  user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
+      <Row className="signupstyle " >
         <Routes>
           <Route
             path="/signup"
@@ -78,9 +79,9 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" /> //if user is logged in, redirect to home page
                 ) : (
-                  <Col md={5} className="m-5 text-light">
-                    <h1 className="text-center mb-5"><span className="h6 fst-italic">Welcome to<br /></span> myFlix</h1>
-                    <h2>Sign Up</h2>
+                  <Col md={5} >
+                    <h1 style={{textAlign:'center',color:'red'}}><span style={{textAlign:'center'}}>Welcome to<br /></span> Superflix</h1>
+                    <h2 style={{textAlign:'center',color:'red',margin:'30px'}}>Sign Up</h2>
                     <SignupView />
                   </Col>
                 )}
@@ -94,8 +95,8 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5} className="m-5 text-light">
-                    <h1 className="welcomHeading"><span className="welcomeHeading2">Welcome to<br /></span> myFlix</h1>
-                    <h2>Login</h2>
+                    <h1 style={{fontFamily:'monospace',textAlign:'center',color:'red',margin:'50px'}} className="welcomHeading"><span className="welcomeHeading2">Welcome to<br /></span> SuperFlix</h1>
+                   <br></br> <h2 style={{fontFamily:'monospace',textAlign:'center',color:'red'}}>Login</h2>
                     <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                   </Col>
                 )}

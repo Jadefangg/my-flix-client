@@ -7,9 +7,8 @@ import "./index.scss";
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
-  onsole.log('MyFlixApplication is being rendered');
   return (
-    <Container style={{ backgroundColor:'lightcoral', padding:'20px'}}>
+    <Container >
       <MainView />
     </Container>
   )

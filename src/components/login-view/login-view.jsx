@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import "./login-view.css";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -39,7 +40,8 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-5">
+    <div className="form-container">
+    <Form onSubmit={handleSubmit} className="mb-5" >
       <Form.Group className="mb-2" controlId="loginFormUsername">
         <Form.Label>
           Username:
@@ -58,6 +60,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
       <div className="mt-3 fst-italic"><Link to={`/signup`} >Don't have an account?</Link></div>
     </Form>
+    </div>
   )
 };
 
