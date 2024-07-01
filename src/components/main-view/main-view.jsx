@@ -69,7 +69,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar  user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
+      <NavigationBar style={{color:'red'}} user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
       <Row className="signupstyle " >
         <Routes>
           <Route
@@ -80,7 +80,7 @@ export const MainView = () => {
                   <Navigate to="/" /> //if user is logged in, redirect to home page
                 ) : (
                   <Col md={5} >
-                    <h1 style={{textAlign:'center',color:'red'}}><span style={{textAlign:'center'}}>Welcome to<br /></span> Superflix</h1>
+                    <h1 style={{textAlign:'center',color:'red'}}><span stys le={{textAlign:'center'}}>Welcome to<br /></span> Superflix</h1>
                     <h2 style={{textAlign:'center',color:'red',margin:'30px'}}>Sign Up</h2>
                     <SignupView />
                   </Col>

@@ -27306,6 +27306,9 @@ const MainView = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
+                style: {
+                    color: "red"
+                },
                 user: user,
                 onLoggedOut: ()=>{
                     setUser(null);
@@ -27341,7 +27344,8 @@ const MainView = ()=>{
                                             },
                                             children: [
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                                    style: {
+                                                    stys: true,
+                                                    le: {
                                                         textAlign: "center"
                                                     },
                                                     children: [
@@ -27349,7 +27353,7 @@ const MainView = ()=>{
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                                             fileName: "src/components/main-view/main-view.jsx",
                                                             lineNumber: 83,
-                                                            columnNumber: 111
+                                                            columnNumber: 113
                                                         }, void 0)
                                                     ]
                                                 }, void 0, true, {
@@ -64674,6 +64678,11 @@ const LoginView = ({ onLoggedIn })=>{
                     controlId: "loginFormUsername",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                            style: {
+                                fontFamily: "monospace",
+                                color: "orange",
+                                fontStyle: "italic"
+                            },
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
@@ -64702,6 +64711,11 @@ const LoginView = ({ onLoggedIn })=>{
                     controlId: "loginFormPassword",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                            style: {
+                                fontFamily: "monospace",
+                                color: "orange",
+                                fontStyle: "italic"
+                            },
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
@@ -65324,15 +65338,14 @@ const SignupView = ()=>{
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
-    const [birthday, setBirthday] = (0, _react.useState)("");
+    //const [birthday, setBirthday] = useState("");
     const navigate = (0, _reactRouterDom.useNavigate)();
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: username,
             Password: password,
-            Email: email,
-            Birthday: birthday
+            Email: email
         };
         fetch("https://frozen-bastion-60513-44d63176384c.herokuapp.com/users", {
             method: "POST",
@@ -65445,36 +65458,6 @@ const SignupView = ()=>{
                 lineNumber: 57,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                style: {
-                    color: "red"
-                },
-                className: "mb-2",
-                controlId: "signupFormBirthday",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                        children: "Birthday:"
-                    }, void 0, false, {
-                        fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 65,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                        type: "date",
-                        value: birthday,
-                        onChange: (e)=>setBirthday(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 68,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 64,
-                columnNumber: 7
-            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                 className: "mt-4",
                 type: "submit",
@@ -65482,7 +65465,7 @@ const SignupView = ()=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 71,
+                lineNumber: 66,
                 columnNumber: 7
             }, undefined)
         ]
@@ -65492,7 +65475,7 @@ const SignupView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(SignupView, "9EY7aHBTeX4vrgzfukBDdK8v2Cw=", false, function() {
+_s(SignupView, "E3n021sZuwyC/uo07wlEqgIuKu4=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate)
     ];

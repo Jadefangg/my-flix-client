@@ -43,14 +43,14 @@ export const LoginView = ({ onLoggedIn }) => {
     <div className="form-container">
     <Form onSubmit={handleSubmit} className="mb-5" >
       <Form.Group className="mb-2" controlId="loginFormUsername">
-        <Form.Label>
+        <Form.Label style={{fontFamily:"monospace",color:'orange',fontStyle:'italic'}}> 
           Username:
         </Form.Label>
         <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} minLength="8" required />
       </Form.Group>
 
       <Form.Group className="mb-2" controlId="loginFormPassword">
-        <Form.Label>
+        <Form.Label style={{fontFamily:"monospace",color:'orange',fontStyle:'italic'}}>
           Password:
         </Form.Label>
         <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
