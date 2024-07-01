@@ -1,5 +1,7 @@
 Superflix is an app which is connected to the mplix DB and api.
 It is a simple project which offers a user to signup and login to a movie database where they can view movies and save them as their favorites.
+This is the netlify live link for your viewing. 
+https://superflixknight.netlify.app/login
 
 The api and htis project are built using the MERN stack.
 
