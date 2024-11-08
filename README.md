@@ -1,4 +1,7 @@
-Superflix is an app which is connected to the mplix DB and api.
+# Approach & understanding:
+This is the REACT  client side of the already completed backend side - API. The heroku app that is the backend server side and contains the database via mongoDB is connected via a connection URI. The API side is what needs to be pushed and deployed to heroku for th eapp to go live. The client side which is this, is the front end of the backend which has been deployed ot heroku. This REACT client side now uses the heroku app url - frozen-bastion-60513 for getting the data and using the endpoint that have been deployed to heroku via the mplix repository.
+
+This is an app which is connected to the mplix DB and api.
 It is a simple project which offers a user to signup and login to a movie database where they can view movies and save them as their favorites.
 This is the netlify live link for your viewing. 
 https://superflixknight.netlify.app/login
